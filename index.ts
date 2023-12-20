@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { simpleGit, SimpleGit, SimpleGitOptions } from "simple-git";
 
 import logConfig from "./log.config";
+import c from "child_process";
 
 const start = async (proPath: string) => {
   const git: SimpleGit = simpleGit(proPath, {
@@ -39,4 +40,7 @@ app.get("/", async (req: any, res: any) => {
   res.render("index", { logs });
 });
 
-app.listen(4000, () => console.log("Example app listening on port 4000!"));
+app.listen(4000, () => {
+  console.log("Example app listening on port 4000!");
+  c.exec("start  http://localhost:4000");
+});
