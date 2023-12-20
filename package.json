@@ -1,0 +1,19 @@
+{
+  "name": "gitlogtool",
+  "version": "0.0.1",
+  "description": "filter git log",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "momei-LJM",
+  "license": "ISC",
+  "dependencies": {
+    "simple-git": "^3.21.0",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
