@@ -1,27 +1,7 @@
 import dayjs from "dayjs";
 import { simpleGit, SimpleGit, SimpleGitOptions } from "simple-git";
 
-const options: Partial<SimpleGitOptions> = {
-  baseDir: process.cwd(),
-  binary: "git",
-  maxConcurrentProcesses: 6,
-  trimmed: false,
-};
-
-// when setting all options in a single object
-// const git: SimpleGit = simpleGit(options);
-
-// or split out the baseDir, supported for backward compatibility
-const paths = [
-  "C:/jc_project/dc2.4.0/imp-web",
-  "C:/jc_project/dc2.4.0/imp-h5",
-  "C:/jc_project/imp-web",
-  "C:/jc_project/imp-h5",
-];
-const from = dayjs().startOf("week").valueOf();
-const author = "lujiamu";
-
-// 开始时间
+import logConfig from "./log.config";
 
 const start = async (proPath: string) => {
   const git: SimpleGit = simpleGit(proPath, {
@@ -29,7 +9,9 @@ const start = async (proPath: string) => {
   });
   const allCommits = await git.log({ strictDate: true });
   const commits = allCommits.all.filter(
-    (i) => i.author_name === author && dayjs(i.date).valueOf() >= from
+    (i) =>
+      i.author_name === logConfig.author &&
+      dayjs(i.date).valueOf() >= logConfig.since
   );
   const messages = commits.map((i) => ({
     message: i.message,
@@ -43,7 +25,7 @@ const start = async (proPath: string) => {
 };
 
 const startTask = async () => {
-  const logs = await Promise.all(paths.map((i) => start(i)));
+  const logs = await Promise.all(logConfig.paths.map((i) => start(i)));
   return logs;
 };
 
