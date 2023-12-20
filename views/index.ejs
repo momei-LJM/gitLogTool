@@ -1,0 +1,62 @@
+<html>
+
+<head>
+  <style>
+    .navbar-blocks {
+      /* background-color: #bebdbd; */
+    }
+
+    .project-item {
+      background-color: #f3f3f3;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0px 5px 18px 1px #dfdfdf;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+    }
+    .project-item:hover{
+      background-color: #4abfec;
+    }
+    .log{
+      margin-bottom: 10px;
+      display: flex;
+    }
+    .ml--auto{
+      margin-left: auto;
+    }
+    .ml{
+      margin-left: 10px;
+    }
+    .msg{
+      font-weight: bold;
+      color: #b231ee;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar-blocks">
+    <% for (let i = 0; i < logs.length; i++) { %>
+    <div class="project-item">
+      <h3>项目路径：<%= logs[i].project %></h3>
+      <% 
+        for (let j = 0; j <logs[i].messages.length; j++) {
+          const log =logs[i].messages[j] 
+        %>
+      <div>
+        <div class="log">
+          <span class="msg">commit信息：<%=log.message %></span>
+          <span class="ml--auto">时间：<%=log.date %></span>
+          <span class="ml">作者：<%=log.author %></span>
+        </div>
+
+      </div>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+</body>
+
+</html>
