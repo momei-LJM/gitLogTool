@@ -6,7 +6,9 @@
     "rootDir": "./",
     "strict": true,
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
   "exclude": ["./node_modules"]
 }

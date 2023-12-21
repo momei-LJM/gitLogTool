@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { defineConfig } from "./utils";
+import { defineConfig } from "./utils/index.ts";
 
 export default defineConfig({
   paths: [

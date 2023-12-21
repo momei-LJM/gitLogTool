@@ -1,9 +1,10 @@
 import dayjs from "dayjs";
 import { simpleGit, SimpleGit, SimpleGitOptions } from "simple-git";
 
-import logConfig from "./log.config";
+import logConfig from "./log.config.ts";
 import c from "child_process";
-
+import chalk from "chalk";
+import express from "express";
 const start = async (proPath: string) => {
   const git: SimpleGit = simpleGit(proPath, {
     binary: "git",
@@ -30,7 +31,6 @@ const startTask = async () => {
   return logs;
 };
 
-let express = require("express");
 let app = express();
 
 app.set("view engine", "ejs");
@@ -40,7 +40,15 @@ app.get("/", async (req: any, res: any) => {
   res.render("index", { logs });
 });
 
-app.listen(4000, () => {
-  console.log("Example app listening on port 4000!");
-  c.exec("start  http://localhost:4000");
+const PORT = 4000;
+const HOST = "localhost";
+const log = console.log;
+
+app.listen(PORT, () => {
+  log(
+    chalk.green("server is ready!") +
+      "：" +
+      chalk.hex("#8b25eb").underline(`http://${HOST}:${PORT}`)
+  );
+  c.exec(`start  http://${HOST}:${PORT}`);
 });
