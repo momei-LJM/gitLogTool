@@ -7,6 +7,7 @@ export default defineConfig({
     "C:/jc_project/dc2.4.0/imp-h5",
     "C:/jc_project/imp-web",
     "C:/jc_project/imp-h5",
+    "C:/jc_project/electron-bybb",
   ],
   author: "lujiamu",
   since: dayjs().startOf("week").valueOf(),
